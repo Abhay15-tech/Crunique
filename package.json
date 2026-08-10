@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --port 8080",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "prisma:validate": "prisma validate",
     "prisma:generate": "prisma generate"
   },
@@ -31,6 +32,8 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0"
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.0"
   }
 }
