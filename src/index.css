@@ -1,0 +1,461 @@
+/* ============================================================
+   CRUNIQUE — $100M LUXURY REAL FRUIT CHIPS DESIGN SYSTEM
+   From Our Family to Yours
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    /* ---- Core Luxury Color Palette ---- */
+    --bg-deep: #06130E;
+    --bg-scene: #0A1C15;
+    --bg-card: #0F281E;
+    --bg-card-hover: #143528;
+    --bg-glass: rgba(15, 40, 30, 0.7);
+    --bg-glass-light: rgba(255, 255, 255, 0.05);
+
+    /* ---- Primary & Brand Accent Colors ---- */
+    --primary-green: #3FA34D;
+    --emerald-glow: rgba(63, 163, 77, 0.35);
+    
+    --cream-silk: #FDFBF7;
+    --cream-muted: #EBE5D8;
+    --cream-dark: #C2BBA8;
+    
+    --gold-accent: #D4AF37;
+    --gold-bright: #F5C542;
+    --gold-glow: rgba(212, 175, 55, 0.35);
+
+    --charcoal-black: #0E1210;
+
+    /* ---- 5 Launch Fruit Accent Colors (User Exact Specifications) ---- */
+    --apple-red: #D62828;
+    --banana-yellow: #F4C430;
+    --kiwi-green: #6BA539;
+    --guava-green: #7CB342;
+    --pineapple-yellow: #F9A825;
+
+    /* ---- Typography ---- */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Outfit', 'Inter', -apple-system, sans-serif;
+
+    /* ---- Glassmorphism & Depth ---- */
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --border-gold: rgba(212, 175, 55, 0.3);
+    
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.6);
+    --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.25);
+
+    /* ---- Radii ---- */
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --radius-full: 9999px;
+
+    /* ---- Transitions ---- */
+    --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   BASE & RESET
+   ============================================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--bg-deep);
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--cream-silk);
+    background-color: var(--bg-deep);
+    background-image: 
+        radial-gradient(ellipse at 20% 10%, rgba(15, 40, 30, 0.8) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 90%, rgba(10, 28, 21, 0.9) 0%, transparent 70%);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+    background: #1B4534;
+    border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-accent);
+}
+
+/* ============================================================
+   TYPOGRAPHY & HEADINGS
+   ============================================================ */
+.font-serif { font-family: var(--font-serif); }
+.font-sans { font-family: var(--font-sans); }
+
+.heading-display {
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--cream-silk);
+}
+
+.heading-lg {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+.heading-md {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.text-lead {
+    font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+    color: var(--cream-muted);
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.gold-gradient-text {
+    background: linear-gradient(135deg, #FFFDF7 0%, #F5C542 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   CONTAINERS & LAYOUT
+   ============================================================ */
+.container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.2rem;
+    }
+}
+
+/* ============================================================
+   LUXURY BUTTONS & BADGES
+   ============================================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.85rem 2rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #D4AF37 0%, #B89228 100%);
+    color: #06130E;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(212, 175, 55, 0.45);
+    background: linear-gradient(135deg, #F5C542 0%, #D4AF37 100%);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--cream-silk);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(12px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-outline-gold {
+    background: transparent;
+    color: var(--gold-accent);
+    border: 1px solid var(--gold-accent);
+}
+
+.btn-outline-gold:hover {
+    background: var(--gold-accent);
+    color: var(--bg-deep);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+}
+
+.badge-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 1rem;
+    border-radius: var(--radius-full);
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold-bright);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   HEADER & NAVBAR
+   ============================================================ */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.2rem 0;
+    transition: all var(--transition-smooth);
+    background: rgba(6, 19, 14, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid var(--gold-accent);
+}
+
+.logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--cream-silk);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
+    list-style: none;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--cream-muted);
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--gold-bright);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold-accent);
+    border-radius: 2px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    color: var(--cream-silk);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--gold-accent);
+    color: var(--gold-bright);
+}
+
+.icon-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--gold-accent);
+    color: var(--bg-deep);
+    font-size: 0.72rem;
+    font-weight: 800;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================================
+   SIGNATURE HERO EXPERIENCE
+   ============================================================ */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 30%, #0F281E 0%, #06130E 70%);
+}
+
+.hero-bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(140px);
+    pointer-events: none;
+    opacity: 0.25;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+.floating-slice {
+    position: absolute;
+    border-radius: 50%;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+    animation: floatAnimation 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatAnimation {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(5deg); }
+    100% { transform: translateY(8px) rotate(-3deg); }
+}
+
+/* ============================================================
+   TOAST NOTIFICATION
+   ============================================================ */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 2000;
+    background: rgba(15, 40, 30, 0.95);
+    border: 1px solid var(--gold-accent);
+    color: var(--cream-silk);
+    padding: 0.9rem 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6), var(--shadow-gold);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    backdrop-filter: blur(16px);
+    animation: slideInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+    background: #040D0A;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 5rem 0 2rem;
+    position: relative;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 576px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
