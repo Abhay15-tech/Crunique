@@ -132,103 +132,153 @@ export const HeroStory = () => {
                         </div>
                     </motion.div>
 
-                    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <div className="hero-chip-stage">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentFruit.id}
-                                initial={{ opacity: 0, scale: 0.9, rotate: -4 }}
-                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                                exit={{ opacity: 0, scale: 0.95, rotate: 4 }}
-                                transition={{ duration: 0.4 }}
-                                style={{ position: 'relative', width: '100%', maxWidth: '420px', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                initial={{ opacity: 0, scale: 0.92, y: 15 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.95, y: -15 }}
+                                transition={{ duration: 0.35 }}
+                                className="hero-product-card"
                             >
+                                {/* Glowing ambient backdrop */}
                                 <div style={{
                                     position: 'absolute',
-                                    inset: 0,
+                                    inset: '-20px',
                                     borderRadius: '50%',
-                                    background: `radial-gradient(circle, ${currentFruit.accentGlow} 0%, transparent 70%)`,
-                                    filter: 'blur(30px)'
+                                    background: `radial-gradient(circle, ${currentFruit.accentGlow} 0%, transparent 65%)`,
+                                    filter: 'blur(35px)',
+                                    pointerEvents: 'none'
                                 }} />
 
-                                <img
-                                    src={currentFruit.image}
-                                    alt={currentFruit.name}
-                                    style={{
-                                        maxWidth: '100%',
-                                        maxHeight: '100%',
-                                        objectFit: 'contain',
-                                        filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.6))',
-                                        zIndex: 2
-                                    }}
-                                />
-
+                                {/* Floating Collection Badge */}
                                 <div style={{
                                     position: 'absolute',
-                                    bottom: '10px',
-                                    left: '10px',
-                                    background: 'rgba(6, 19, 14, 0.9)',
+                                    top: '16px',
+                                    left: '16px',
+                                    background: 'rgba(6, 19, 14, 0.85)',
                                     border: `1px solid ${currentFruit.accentColor}`,
-                                    padding: '0.6rem 1.2rem',
-                                    borderRadius: '16px',
-                                    backdropFilter: 'blur(12px)',
-                                    zIndex: 3
+                                    padding: '0.35rem 0.85rem',
+                                    borderRadius: '9999px',
+                                    fontSize: '0.72rem',
+                                    fontWeight: 700,
+                                    color: currentFruit.accentColor,
+                                    letterSpacing: '0.05em',
+                                    textTransform: 'uppercase',
+                                    zIndex: 4,
+                                    backdropFilter: 'blur(8px)'
                                 }}>
-                                    <div style={{ fontSize: '0.75rem', color: currentFruit.accentColor, fontWeight: 700, textTransform: 'uppercase' }}>
-                                        {currentFruit.badge}
+                                    ✦ {currentFruit.badge}
+                                </div>
+
+                                {/* Main High-Res Product Visual */}
+                                <div style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: '2.5rem 1.5rem',
+                                    zIndex: 2
+                                }}>
+                                    <img
+                                        src={currentFruit.image.startsWith('/') ? currentFruit.image : `/${currentFruit.image}`}
+                                        alt={currentFruit.name}
+                                        style={{
+                                            maxWidth: '85%',
+                                            maxHeight: '85%',
+                                            objectFit: 'contain',
+                                            filter: 'drop-shadow(0 20px 35px rgba(0,0,0,0.65))'
+                                        }}
+                                    />
+                                </div>
+
+                                {/* Bottom Product Info Badge */}
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: '14px',
+                                    left: '14px',
+                                    right: '14px',
+                                    background: 'rgba(6, 19, 14, 0.9)',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    padding: '0.7rem 1.2rem',
+                                    borderRadius: '16px',
+                                    backdropFilter: 'blur(16px)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    zIndex: 4
+                                }}>
+                                    <div>
+                                        <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--cream-silk)' }}>
+                                            {currentFruit.name}
+                                        </div>
+                                        <div style={{ fontSize: '0.75rem', color: 'var(--cream-muted)' }}>
+                                            100% Real Fruit • 0g Added Sugar
+                                        </div>
                                     </div>
-                                    <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--cream-silk)' }}>
-                                        {currentFruit.name}
-                                    </div>
-                                    <div style={{ fontSize: '0.85rem', color: 'var(--gold-bright)', fontWeight: 600 }}>
-                                        ${currentFruit.price.toFixed(2)}
+                                    <div style={{ textAlign: 'right' }}>
+                                        <div style={{ fontSize: '1.15rem', color: 'var(--gold-bright)', fontWeight: 800 }}>
+                                            ${currentFruit.price.toFixed(2)}
+                                        </div>
+                                        <div style={{ fontSize: '0.68rem', color: 'var(--gold-accent)', fontWeight: 600, textTransform: 'uppercase' }}>
+                                            50g Pack
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
                         </AnimatePresence>
 
-                        <div 
-                            className="scroll-pills-row"
-                            style={{ 
-                                marginTop: '2rem', 
-                                background: 'rgba(255,255,255,0.04)', 
-                                padding: '0.4rem', 
-                                borderRadius: '9999px', 
-                                border: '1px solid rgba(255,255,255,0.08)',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            {CRUNIQUE_PRODUCTS.map((prod, idx) => (
-                                <button
-                                    key={prod.id}
-                                    onClick={() => handleFruitChange(idx)}
-                                    style={{
-                                        padding: '0.45rem 0.85rem',
-                                        borderRadius: '9999px',
-                                        border: 'none',
-                                        background: selectedFruitIndex === idx ? prod.accentColor : 'transparent',
-                                        color: selectedFruitIndex === idx ? '#FFFFFF' : 'var(--cream-muted)',
-                                        fontWeight: 600,
-                                        fontSize: '0.82rem',
-                                        cursor: 'pointer',
-                                        whiteSpace: 'nowrap',
-                                        flexShrink: 0,
-                                        transition: 'all 0.25s ease',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '0.35rem'
-                                    }}
-                                >
-                                    <span>{prod.name.split(' ')[1] || prod.name}</span>
-                                </button>
-                            ))}
+                        {/* Interactive 5-Fruit Options Bar */}
+                        <div className="hero-fruit-pills" role="tablist" aria-label="Choose 5 Launch Fruits">
+                            {CRUNIQUE_PRODUCTS.map((prod, idx) => {
+                                const isSelected = selectedFruitIndex === idx;
+                                const FRUIT_EMOJIS = {
+                                    'apple-chips': '🍎',
+                                    'banana-chips': '🍌',
+                                    'kiwi-chips': '🥝',
+                                    'guava-chips': '🍈',
+                                    'pineapple-chips': '🍍'
+                                };
+                                const emoji = FRUIT_EMOJIS[prod.id] || '✨';
+                                const shortName = prod.name.replace('Crispy', '').replace('Crunchy', '').replace('Exotic', '').replace('Natural', '').replace('Tropical', '').replace('Chips', '').replace('Crisps', '').replace('Rings', '').trim();
+                                return (
+                                    <button
+                                        key={prod.id}
+                                        onClick={() => handleFruitChange(idx)}
+                                        className={`hero-fruit-pill-btn ${isSelected ? 'active' : ''}`}
+                                        style={{
+                                            background: isSelected ? prod.accentColor : 'rgba(255,255,255,0.04)',
+                                            color: isSelected ? '#FFFFFF' : 'var(--cream-muted)',
+                                            borderColor: isSelected ? 'var(--gold-accent)' : 'rgba(255,255,255,0.08)'
+                                        }}
+                                        aria-selected={isSelected}
+                                    >
+                                        <span style={{ fontSize: '1rem' }}>{emoji}</span>
+                                        <span>{shortName}</span>
+                                    </button>
+                                );
+                            })}
                         </div>
 
-                        <button 
-                            className="btn btn-outline-gold"
+                        {/* Quick Add CTA */}
+                        <button
+                            className="btn btn-primary"
                             onClick={() => addToCart(currentFruit, 1)}
-                            style={{ marginTop: '1.2rem', width: '100%', maxWidth: '320px', padding: '0.7rem 1.5rem', fontSize: '0.85rem' }}
+                            style={{
+                                marginTop: '1.4rem',
+                                width: '100%',
+                                maxWidth: '380px',
+                                padding: '0.85rem 1.8rem',
+                                fontSize: '0.9rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '0.6rem'
+                            }}
                         >
-                            Quick Add {currentFruit.name} • ${currentFruit.price.toFixed(2)}
+                            <span>Quick Add {currentFruit.name} • ${currentFruit.price.toFixed(2)}</span>
                         </button>
                     </div>
                 </div>

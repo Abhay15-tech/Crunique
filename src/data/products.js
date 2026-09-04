@@ -17,7 +17,7 @@ export const CRUNIQUE_PRODUCTS = [
         accentColor: "#D62828",
         accentGlow: "rgba(214, 40, 40, 0.4)",
         personality: "Premium • Classic • Elegant • Everyday Healthy Snack",
-        image: "assets/images/apple_chips.png",
+        image: "/assets/images/apple_chips.png",
         rating: 4.9,
         reviewsCount: 184,
         badge: "Classic Collection",
@@ -57,7 +57,7 @@ export const CRUNIQUE_PRODUCTS = [
         accentColor: "#F4C430",
         accentGlow: "rgba(244, 196, 48, 0.4)",
         personality: "Energetic • Comforting • Wholesome • Family Friendly",
-        image: "assets/images/banana_chips.png",
+        image: "/assets/images/banana_chips.png",
         rating: 4.8,
         reviewsCount: 162,
         badge: "Classic Collection",
@@ -97,7 +97,7 @@ export const CRUNIQUE_PRODUCTS = [
         accentColor: "#6BA539",
         accentGlow: "rgba(107, 165, 57, 0.4)",
         personality: "Premium • Modern • Exotic • Refreshing",
-        image: "assets/images/kiwi_chips.png",
+        image: "/assets/images/kiwi_chips.png",
         rating: 5.0,
         reviewsCount: 198,
         badge: "Exotic Collection",
@@ -137,7 +137,7 @@ export const CRUNIQUE_PRODUCTS = [
         accentColor: "#7CB342",
         accentGlow: "rgba(124, 179, 66, 0.4)",
         personality: "Authentic • Natural • Traditional • Indian Inspired",
-        image: "assets/images/guava_chips.png",
+        image: "/assets/images/guava_chips.png",
         rating: 4.9,
         reviewsCount: 145,
         badge: "Tropical Collection",
@@ -177,7 +177,7 @@ export const CRUNIQUE_PRODUCTS = [
         accentColor: "#F9A825",
         accentGlow: "rgba(249, 168, 37, 0.4)",
         personality: "Bright • Joyful • Refreshing • Premium Tropical Experience",
-        image: "assets/images/pineapple_chips.png",
+        image: "/assets/images/pineapple_chips.png",
         rating: 4.9,
         reviewsCount: 172,
         badge: "Exotic Collection",
@@ -247,7 +247,7 @@ export const COMBO_PACK_COLLECTIONS = [
         includedFruits: ["Apple Chips", "Banana Chips", "Kiwi Chips", "Guava Chips", "Pineapple Chips"],
         badge: "All 5 Flavors",
         accentColor: "#D4AF37",
-        image: "assets/images/apple_chips.png"
+        image: "/assets/images/apple_chips.png"
     },
     {
         id: "fitness-fuel",
@@ -260,7 +260,7 @@ export const COMBO_PACK_COLLECTIONS = [
         includedFruits: ["Apple Chips", "Banana Chips", "Kiwi Chips"],
         badge: "Pre-Workout Pick",
         accentColor: "#F4C430",
-        image: "assets/images/banana_chips.png"
+        image: "/assets/images/banana_chips.png"
     },
     {
         id: "family-snack-box",
@@ -273,7 +273,7 @@ export const COMBO_PACK_COLLECTIONS = [
         includedFruits: ["2x Apple", "2x Banana", "2x Kiwi", "2x Guava", "2x Pineapple"],
         badge: "Best Family Value",
         accentColor: "#3FA34D",
-        image: "assets/images/kiwi_chips.png"
+        image: "/assets/images/kiwi_chips.png"
     },
     {
         id: "premium-gift-box",
@@ -286,7 +286,7 @@ export const COMBO_PACK_COLLECTIONS = [
         includedFruits: ["All 5 Signature Fruits + Custom Gift Card"],
         badge: "Luxury Gifting",
         accentColor: "#D4AF37",
-        image: "assets/images/guava_chips.png"
+        image: "/assets/images/guava_chips.png"
     },
     {
         id: "travel-snack-pack",
@@ -299,7 +299,7 @@ export const COMBO_PACK_COLLECTIONS = [
         includedFruits: ["5x 25g Mini Trial Pouches"],
         badge: "On-The-Go",
         accentColor: "#F9A825",
-        image: "assets/images/pineapple_chips.png"
+        image: "/assets/images/pineapple_chips.png"
     }
 ];
 
