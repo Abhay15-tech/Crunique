@@ -46,16 +46,6 @@ export const HeroStory = () => {
                     >
                         <Sparkles size={14} /> From Our Family to Yours
                     </motion.div>
-
-                    <button 
-                        className="btn-secondary" 
-                        onClick={() => setSoundEnabled(!soundEnabled)}
-                        style={{ padding: '0.4rem 1rem', fontSize: '0.8rem', gap: '0.5rem', borderRadius: '9999px' }}
-                        title="Toggle Crunch Audio Experience"
-                    >
-                        {soundEnabled ? <Volume2 size={16} color="var(--gold-bright)" /> : <VolumeX size={16} />}
-                        <span>Crunch Audio: {soundEnabled ? 'ON' : 'OFF'}</span>
-                    </button>
                 </div>
 
                 <div className="hero-grid">
@@ -103,23 +93,7 @@ export const HeroStory = () => {
                             </div>
                         </div>
 
-                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                            <button 
-                                className="btn btn-primary"
-                                onClick={() => navigateTo('shop')}
-                            >
-                                Shop 5 Launch Fruits <ArrowRight size={18} />
-                            </button>
-
-                            <button 
-                                className="btn btn-secondary"
-                                onClick={() => navigateTo('about')}
-                            >
-                                Our Family Story
-                            </button>
-                        </div>
-
-                        <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2.5rem', flexWrap: 'wrap', opacity: 0.85, fontSize: '0.85rem' }}>
+                        <div style={{ display: 'flex', gap: '1.5rem', marginTop: '1.5rem', flexWrap: 'wrap', opacity: 0.85, fontSize: '0.85rem' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                                 <Leaf size={16} color="var(--primary-green)" /> 100% Real Fruit
                             </div>

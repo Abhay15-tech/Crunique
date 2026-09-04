@@ -1,21 +1,21 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useApp } from '../context/AppContext';
-import { ShoppingBag, Heart, Volume2, VolumeX, Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { ShoppingBag, Heart, Menu, X, ArrowRight } from 'lucide-react';
 
 export const Header = () => {
     const {
         activeView,
-        navigateTo,
         cartCount,
         wishlistCount,
         setIsCartOpen,
-        setIsWishlistOpen,
-        soundEnabled,
-        setSoundEnabled
+        setIsWishlistOpen
     } = useApp();
 
+    const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
 
@@ -35,14 +35,12 @@ export const Header = () => {
         };
     }, [mobileMenuOpen]);
 
-    const handleMobileNav = (view, anchorId) => {
+    const handleSamplerClick = (e) => {
         setMobileMenuOpen(false);
-        navigateTo(view);
-        if (anchorId) {
-            setTimeout(() => {
-                const el = document.getElementById(anchorId);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 150);
+        if (pathname === '/') {
+            e.preventDefault();
+            const el = document.getElementById('bundle-builder');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -51,10 +49,10 @@ export const Header = () => {
             <header className="header" id="main-header">
                 <div className="container nav-wrapper">
                     {/* Brand Logo & Tagline */}
-                    <a
-                        href="#home"
+                    <Link
+                        href="/"
                         className="logo"
-                        onClick={(e) => { e.preventDefault(); navigateTo('home'); }}
+                        onClick={() => setMobileMenuOpen(false)}
                     >
                         <img src="/assets/images/crunique_logo.jpg" alt="CRUNIQUE Logo" className="logo-img" />
                         <div>
@@ -63,86 +61,49 @@ export const Header = () => {
                                 From Our Family to Yours
                             </div>
                         </div>
-                    </a>
+                    </Link>
 
                     {/* Desktop Navigation Links */}
                     <nav className="desktop-nav">
                         <ul className="nav-links">
                             <li>
-                                <a
-                                    href="#home"
-                                    className={`nav-link ${activeView === 'home' ? 'active' : ''}`}
-                                    onClick={(e) => { e.preventDefault(); navigateTo('home'); }}
+                                <Link
+                                    href="/"
+                                    className={`nav-link ${pathname === '/' ? 'active' : ''}`}
                                 >
                                     Home
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#shop"
-                                    className={`nav-link ${activeView === 'shop' ? 'active' : ''}`}
-                                    onClick={(e) => { e.preventDefault(); navigateTo('shop'); }}
+                                <Link
+                                    href="/shop"
+                                    className={`nav-link ${pathname === '/shop' ? 'active' : ''}`}
                                 >
                                     5 Launch Fruits
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#bundle"
+                                <Link
+                                    href="/#bundle-builder"
                                     className="nav-link"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        navigateTo('home');
-                                        setTimeout(() => {
-                                            const el = document.getElementById('bundle-builder');
-                                            if (el) el.scrollIntoView({ behavior: 'smooth' });
-                                        }, 100);
-                                    }}
+                                    onClick={handleSamplerClick}
                                 >
                                     Family Sampler Box
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#about"
-                                    className={`nav-link ${activeView === 'about' ? 'active' : ''}`}
-                                    onClick={(e) => { e.preventDefault(); navigateTo('about'); }}
-                                >
-                                    Our Story
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#recipes"
-                                    className={`nav-link ${activeView === 'recipes' ? 'active' : ''}`}
-                                    onClick={(e) => { e.preventDefault(); navigateTo('recipes'); }}
-                                >
-                                    Recipes & Pairings
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#contact"
-                                    className={`nav-link ${activeView === 'contact' ? 'active' : ''}`}
-                                    onClick={(e) => { e.preventDefault(); navigateTo('contact'); }}
+                                <Link
+                                    href="/contact"
+                                    className={`nav-link ${pathname === '/contact' ? 'active' : ''}`}
                                 >
                                     Support
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </nav>
 
                     {/* Header Actions */}
                     <div className="header-actions">
-                        <button
-                            className="icon-btn"
-                            onClick={() => setSoundEnabled(!soundEnabled)}
-                            title={soundEnabled ? "Mute Audio" : "Enable Audio"}
-                            aria-label="Toggle crunch audio"
-                        >
-                            {soundEnabled ? <Volume2 size={18} color="var(--gold-bright)" /> : <VolumeX size={18} />}
-                        </button>
-
                         <button
                             className="icon-btn"
                             onClick={() => setIsWishlistOpen(true)}
@@ -161,14 +122,6 @@ export const Header = () => {
                         >
                             <ShoppingBag size={18} />
                             {mounted && cartCount > 0 && <span className="icon-badge">{cartCount}</span>}
-                        </button>
-
-                        <button
-                            className="btn btn-primary header-cta-btn"
-                            onClick={() => navigateTo('shop')}
-                            style={{ padding: '0.6rem 1.4rem', fontSize: '0.85rem' }}
-                        >
-                            Shop 5 Fruits
                         </button>
 
                         {/* Mobile Hamburger Menu Toggle Button */}
@@ -212,97 +165,52 @@ export const Header = () => {
 
                     <ul className="mobile-nav-links">
                         <li>
-                            <a
-                                href="#home"
-                                className={`mobile-nav-link ${activeView === 'home' ? 'active' : ''}`}
-                                onClick={(e) => { e.preventDefault(); handleMobileNav('home'); }}
+                            <Link
+                                href="/"
+                                className={`mobile-nav-link ${pathname === '/' ? 'active' : ''}`}
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 <span>Home</span>
                                 <ArrowRight size={16} opacity={0.6} />
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#shop"
-                                className={`mobile-nav-link ${activeView === 'shop' ? 'active' : ''}`}
-                                onClick={(e) => { e.preventDefault(); handleMobileNav('shop'); }}
+                            <Link
+                                href="/shop"
+                                className={`mobile-nav-link ${pathname === '/shop' ? 'active' : ''}`}
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 <span>5 Launch Fruits</span>
                                 <ArrowRight size={16} opacity={0.6} />
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#bundle"
+                            <Link
+                                href="/#bundle-builder"
                                 className="mobile-nav-link"
-                                onClick={(e) => { e.preventDefault(); handleMobileNav('home', 'bundle-builder'); }}
+                                onClick={handleSamplerClick}
                             >
                                 <span>Family Sampler Box</span>
                                 <ArrowRight size={16} opacity={0.6} />
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#about"
-                                className={`mobile-nav-link ${activeView === 'about' ? 'active' : ''}`}
-                                onClick={(e) => { e.preventDefault(); handleMobileNav('about'); }}
-                            >
-                                <span>Our Story</span>
-                                <ArrowRight size={16} opacity={0.6} />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#recipes"
-                                className={`mobile-nav-link ${activeView === 'recipes' ? 'active' : ''}`}
-                                onClick={(e) => { e.preventDefault(); handleMobileNav('recipes'); }}
-                            >
-                                <span>Recipes & Pairings</span>
-                                <ArrowRight size={16} opacity={0.6} />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#contact"
-                                className={`mobile-nav-link ${activeView === 'contact' ? 'active' : ''}`}
-                                onClick={(e) => { e.preventDefault(); handleMobileNav('contact'); }}
+                            <Link
+                                href="/contact"
+                                className={`mobile-nav-link ${pathname === '/contact' ? 'active' : ''}`}
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 <span>Support</span>
                                 <ArrowRight size={16} opacity={0.6} />
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
 
-                <div style={{ paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1rem', borderRadius: '12px' }}>
-                        <span style={{ fontSize: '0.85rem', color: 'var(--cream-muted)' }}>Crunch Audio</span>
-                        <button
-                            onClick={() => setSoundEnabled(!soundEnabled)}
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '0.4rem',
-                                background: 'transparent',
-                                border: 'none',
-                                color: soundEnabled ? 'var(--gold-bright)' : 'var(--cream-muted)',
-                                cursor: 'pointer',
-                                fontSize: '0.82rem',
-                                fontWeight: 600
-                            }}
-                        >
-                            {soundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
-                            {soundEnabled ? 'ON' : 'OFF'}
-                        </button>
+                <div style={{ paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                    <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--gold-accent)', fontWeight: 600, letterSpacing: '0.08em' }}>
+                        ✦ FROM OUR FAMILY TO YOURS ✦
                     </div>
-
-                    <button
-                        className="btn btn-primary"
-                        onClick={() => handleMobileNav('shop')}
-                        style={{ width: '100%', padding: '0.85rem' }}
-                    >
-                        Shop 5 Launch Fruits <ArrowRight size={16} />
-                    </button>
                 </div>
             </aside>
         </>

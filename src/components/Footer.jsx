@@ -54,11 +54,10 @@ export const Footer = () => {
                             Experience
                         </h4>
                         <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem', color: 'var(--cream-muted)' }}>
-                            <li><a href="#about" onClick={(e) => { e.preventDefault(); navigateTo('about'); }}>Our Family Story</a></li>
-                            <li><a href="#bundle" onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>Family Sampler Box</a></li>
-                            <li><a href="#recipes" onClick={(e) => { e.preventDefault(); navigateTo('recipes'); }}>Gourmet Recipes</a></li>
-                            <li><a href="#gifting" onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>Corporate Hampers</a></li>
-                            <li><a href="#contact" onClick={(e) => { e.preventDefault(); navigateTo('contact'); }}>Support & Contact</a></li>
+                            <li><a href="/shop" onClick={(e) => { e.preventDefault(); navigateTo('shop'); }}>5 Launch Fruits</a></li>
+                            <li><a href="/#bundle" onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>Family Sampler Box</a></li>
+                            <li><a href="/#gifting" onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>Corporate Hampers</a></li>
+                            <li><a href="/contact" onClick={(e) => { e.preventDefault(); navigateTo('contact'); }}>Support & Contact</a></li>
                         </ul>
                     </div>
 

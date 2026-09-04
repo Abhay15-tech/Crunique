@@ -9,7 +9,7 @@ export const AppProvider = ({ children }) => {
     const [activeView, setActiveView] = useState('home');
     const [introVisible, setIntroVisible] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const [soundEnabled, setSoundEnabled] = useState(true);
+    const [soundEnabled, setSoundEnabled] = useState(false);
 
     // Device identification (mobile vs laptop/PC)
     const [deviceType, setDeviceType] = useState('desktop');
@@ -124,28 +124,7 @@ export const AppProvider = ({ children }) => {
     };
 
     const playCrunchSound = () => {
-        if (!soundEnabled || typeof window === 'undefined') return;
-        try {
-            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-            if (!AudioContextClass) return;
-            const ctx = new AudioContextClass();
-
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(140, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.12);
-
-            gain.gain.setValueAtTime(0.15, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.start();
-            osc.stop(ctx.currentTime + 0.12);
-        } catch (e) {}
+        // Sound disabled as requested
     };
 
     const navigateTo = (viewName, productId = null) => {
@@ -155,7 +134,27 @@ export const AppProvider = ({ children }) => {
             if (found) setSelectedProduct(found);
         }
         if (typeof window !== 'undefined') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (viewName === 'shop') {
+                if (window.location.pathname !== '/shop') {
+                    window.location.href = '/shop';
+                }
+            } else if (viewName === 'home') {
+                if (window.location.pathname !== '/') {
+                    window.location.href = '/';
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            } else if (viewName === 'contact') {
+                if (window.location.pathname !== '/contact') {
+                    window.location.href = '/contact';
+                }
+            } else if (viewName === 'about') {
+                if (window.location.pathname !== '/about') {
+                    window.location.href = '/about';
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
     };
 
