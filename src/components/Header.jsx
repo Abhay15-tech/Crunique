@@ -35,14 +35,6 @@ export const Header = () => {
         };
     }, [mobileMenuOpen]);
 
-    const handleSamplerClick = (e) => {
-        setMobileMenuOpen(false);
-        if (pathname === '/') {
-            e.preventDefault();
-            const el = document.getElementById('bundle-builder');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
 
     return (
         <>
@@ -72,23 +64,6 @@ export const Header = () => {
                                     className={`nav-link ${pathname === '/' ? 'active' : ''}`}
                                 >
                                     Home
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/shop"
-                                    className={`nav-link ${pathname === '/shop' ? 'active' : ''}`}
-                                >
-                                    5 Launch Fruits
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/#bundle-builder"
-                                    className="nav-link"
-                                    onClick={handleSamplerClick}
-                                >
-                                    Family Sampler Box
                                 </Link>
                             </li>
                             <li>
@@ -171,26 +146,6 @@ export const Header = () => {
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 <span>Home</span>
-                                <ArrowRight size={16} opacity={0.6} />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/shop"
-                                className={`mobile-nav-link ${pathname === '/shop' ? 'active' : ''}`}
-                                onClick={() => setMobileMenuOpen(false)}
-                            >
-                                <span>5 Launch Fruits</span>
-                                <ArrowRight size={16} opacity={0.6} />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/#bundle-builder"
-                                className="mobile-nav-link"
-                                onClick={handleSamplerClick}
-                            >
-                                <span>Family Sampler Box</span>
                                 <ArrowRight size={16} opacity={0.6} />
                             </Link>
                         </li>
