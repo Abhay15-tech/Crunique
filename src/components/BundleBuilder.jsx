@@ -40,8 +40,8 @@ export const BundleBuilder = () => {
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '2.2rem',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+                    gap: '1.8rem',
                     marginBottom: '4rem'
                 }}>
                     {COMBO_PACK_COLLECTIONS.map((combo) => {
@@ -50,11 +50,12 @@ export const BundleBuilder = () => {
                             <motion.div
                                 key={combo.id}
                                 whileHover={{ y: -6 }}
+                                className="responsive-card-padding"
                                 style={{
                                     background: isSelected ? 'linear-gradient(135deg, rgba(212,175,55,0.12) 0%, rgba(15,40,30,0.9) 100%)' : 'var(--bg-card)',
                                     borderRadius: '28px',
                                     border: `1.5px solid ${isSelected ? 'var(--gold-accent)' : 'rgba(255,255,255,0.08)'}`,
-                                    padding: '2.2rem',
+                                    padding: '2rem',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     justifyContent: 'space-between',

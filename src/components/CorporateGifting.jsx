@@ -37,16 +37,19 @@ export const CorporateGifting = () => {
                     </p>
                 </div>
 
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1.2fr 1fr',
-                    gap: '4rem',
-                    alignItems: 'center',
-                    background: 'rgba(255,255,255,0.02)',
-                    borderRadius: '32px',
-                    border: '1px solid rgba(255,255,255,0.06)',
-                    padding: '3.5rem'
-                }}>
+                <div 
+                    className="responsive-grid-2"
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+                        gap: '2.5rem',
+                        alignItems: 'center',
+                        background: 'rgba(255,255,255,0.02)',
+                        borderRadius: '28px',
+                        border: '1px solid rgba(255,255,255,0.06)',
+                        padding: '3rem'
+                    }}
+                >
                     <div>
                         <div style={{
                             background: 'var(--bg-card)',

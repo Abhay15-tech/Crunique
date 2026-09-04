@@ -11,6 +11,53 @@ export const AppProvider = ({ children }) => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [soundEnabled, setSoundEnabled] = useState(true);
 
+    // Device identification (mobile vs laptop/PC)
+    const [deviceType, setDeviceType] = useState('desktop');
+    const [isMobile, setIsMobile] = useState(false);
+    const [isTablet, setIsTablet] = useState(false);
+
+    useEffect(() => {
+        const checkDevice = () => {
+            if (typeof window === 'undefined') return;
+            const width = window.innerWidth;
+            const userAgent = navigator.userAgent || '';
+            const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+
+            let detected = 'desktop';
+            if (width < 768 || (isMobileUA && width < 992)) {
+                detected = 'mobile';
+            } else if (width >= 768 && width <= 1024) {
+                detected = 'tablet';
+            } else {
+                detected = 'desktop';
+            }
+
+            setDeviceType(detected);
+            setIsMobile(detected === 'mobile');
+            setIsTablet(detected === 'tablet');
+
+            if (document.documentElement) {
+                document.documentElement.setAttribute('data-device', detected);
+                if (detected === 'mobile') {
+                    document.documentElement.classList.add('is-mobile');
+                    document.documentElement.classList.remove('is-desktop');
+                } else {
+                    document.documentElement.classList.add('is-desktop');
+                    document.documentElement.classList.remove('is-mobile');
+                }
+            }
+        };
+
+        checkDevice();
+        window.addEventListener('resize', checkDevice);
+        window.addEventListener('orientationchange', checkDevice);
+
+        return () => {
+            window.removeEventListener('resize', checkDevice);
+            window.removeEventListener('orientationchange', checkDevice);
+        };
+    }, []);
+
     // Helper to sanitize items
     const sanitizeCartItem = (item) => {
         if (!item) return null;
@@ -202,7 +249,11 @@ export const AppProvider = ({ children }) => {
             setSoundEnabled,
             playCrunchSound,
             toastMessage,
-            showToast
+            showToast,
+            deviceType,
+            isMobile,
+            isTablet,
+            isDesktop: deviceType === 'desktop'
         }}>
             {children}
         </AppContext.Provider>
@@ -235,7 +286,11 @@ export const useApp = () => {
             setSoundEnabled: () => {},
             playCrunchSound: () => {},
             toastMessage: null,
-            showToast: () => {}
+            showToast: () => {},
+            deviceType: 'desktop',
+            isMobile: false,
+            isTablet: false,
+            isDesktop: true
         };
     }
     return context;

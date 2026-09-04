@@ -74,25 +74,26 @@ export const FruitExperienceShowcase = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.4 }}
+                        className="responsive-grid-2"
                         style={{
                             background: 'var(--bg-card)',
-                            borderRadius: '32px',
+                            borderRadius: '28px',
                             border: `1px solid rgba(255, 255, 255, 0.08)`,
                             padding: '3rem',
                             display: 'grid',
-                            gridTemplateColumns: '1fr 1.2fr',
-                            gap: '3.5rem',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+                            gap: '2.5rem',
                             alignItems: 'center',
                             boxShadow: 'var(--shadow-lg)'
                         }}
                     >
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                             <div
                                 style={{
                                     perspective: '1000px',
                                     width: '100%',
-                                    maxWidth: '360px',
-                                    height: '420px',
+                                    maxWidth: '340px',
+                                    height: 'min(400px, 75vw)',
                                     cursor: 'pointer'
                                 }}
                                 onClick={() => setIsFlipped(!isFlipped)}
@@ -216,7 +217,7 @@ export const FruitExperienceShowcase = () => {
                                 <div style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--gold-accent)', marginBottom: '0.6rem' }}>
                                     Select Pack Size Variation:
                                 </div>
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.6rem' }}>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(65px, 1fr))', gap: '0.6rem' }}>
                                     {PACK_SIZES.map((ps, idx) => {
                                         const isSelected = selectedSizeIndex === idx;
                                         return (

@@ -34,6 +34,7 @@ export const ProductModal = () => {
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                    className="responsive-modal-box"
                     style={{
                         background: 'var(--bg-card)',
                         borderRadius: '32px',
@@ -51,8 +52,8 @@ export const ProductModal = () => {
                         onClick={() => setSelectedProduct(null)}
                         style={{
                             position: 'absolute',
-                            top: '1.5rem',
-                            right: '1.5rem',
+                            top: '1.2rem',
+                            right: '1.2rem',
                             background: 'rgba(255,255,255,0.06)',
                             border: '1px solid rgba(255,255,255,0.1)',
                             color: 'var(--cream-silk)',
@@ -62,13 +63,14 @@ export const ProductModal = () => {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            zIndex: 10
                         }}
                     >
                         <X size={20} />
                     </button>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '3rem', alignItems: 'start' }}>
+                    <div className="responsive-modal-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '2.5rem', alignItems: 'start' }}>
                         <div>
                             <div style={{ textAlign: 'center', background: 'rgba(255,255,255,0.02)', padding: '2rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '1.5rem' }}>
                                 <img

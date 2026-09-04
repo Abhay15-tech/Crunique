@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import '@/index.css';
 import { AppProvider } from '@/context/AppContext';
 import { Header } from '@/components/Header';
@@ -8,7 +8,15 @@ import { ProductModal } from '@/components/ProductModal';
 import { CartDrawer } from '@/components/CartDrawer';
 import { WishlistDrawer } from '@/components/WishlistDrawer';
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#06130E',
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://crunique.com'),
   title: 'CRUNIQUE — From Our Family to Yours | 100% Real Fruit Chips',
   description: 'India’s premier luxury real fruit chips brand. Made with 100% natural real fruit, zero oil, zero added sugar, and family care.',
   keywords: ['Fruit Chips', 'Real Fruit Crisps', 'Healthy Snacks', 'Apple Chips', 'Banana Chips', 'Kiwi Chips', 'Guava Chips', 'Pineapple Chips', 'CRUNIQUE'],

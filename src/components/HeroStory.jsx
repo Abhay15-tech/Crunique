@@ -186,24 +186,36 @@ export const HeroStory = () => {
                             </motion.div>
                         </AnimatePresence>
 
-                        <div style={{ marginTop: '2rem', display: 'flex', gap: '0.6rem', background: 'rgba(255,255,255,0.04)', padding: '0.5rem', borderRadius: '9999px', border: '1px solid rgba(255,255,255,0.08)' }}>
+                        <div 
+                            className="scroll-pills-row"
+                            style={{ 
+                                marginTop: '2rem', 
+                                background: 'rgba(255,255,255,0.04)', 
+                                padding: '0.4rem', 
+                                borderRadius: '9999px', 
+                                border: '1px solid rgba(255,255,255,0.08)',
+                                justifyContent: 'center'
+                            }}
+                        >
                             {CRUNIQUE_PRODUCTS.map((prod, idx) => (
                                 <button
                                     key={prod.id}
                                     onClick={() => handleFruitChange(idx)}
                                     style={{
-                                        padding: '0.5rem 1rem',
+                                        padding: '0.45rem 0.85rem',
                                         borderRadius: '9999px',
                                         border: 'none',
                                         background: selectedFruitIndex === idx ? prod.accentColor : 'transparent',
                                         color: selectedFruitIndex === idx ? '#FFFFFF' : 'var(--cream-muted)',
                                         fontWeight: 600,
-                                        fontSize: '0.85rem',
+                                        fontSize: '0.82rem',
                                         cursor: 'pointer',
+                                        whiteSpace: 'nowrap',
+                                        flexShrink: 0,
                                         transition: 'all 0.25s ease',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '0.4rem'
+                                        gap: '0.35rem'
                                     }}
                                 >
                                     <span>{prod.name.split(' ')[1] || prod.name}</span>
