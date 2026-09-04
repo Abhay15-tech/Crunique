@@ -1,21 +1,19 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useApp } from '../context/AppContext';
 import { ShoppingBag, Heart, Menu, X, ArrowRight } from 'lucide-react';
 
 export const Header = () => {
     const {
         activeView,
+        navigateTo,
         cartCount,
         wishlistCount,
         setIsCartOpen,
         setIsWishlistOpen
     } = useApp();
 
-    const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
 
@@ -35,16 +33,23 @@ export const Header = () => {
         };
     }, [mobileMenuOpen]);
 
+    const handleNav = (viewName) => {
+        setMobileMenuOpen(false);
+        navigateTo(viewName);
+    };
 
     return (
         <>
             <header className="header" id="main-header">
                 <div className="container nav-wrapper">
                     {/* Brand Logo & Tagline */}
-                    <Link
-                        href="/"
+                    <a
+                        href="#home"
                         className="logo"
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleNav('home');
+                        }}
                     >
                         <img src="/assets/images/crunique_logo.jpg" alt="CRUNIQUE Logo" className="logo-img" />
                         <div>
@@ -53,31 +58,39 @@ export const Header = () => {
                                 From Our Family to Yours
                             </div>
                         </div>
-                    </Link>
+                    </a>
 
-                    {/* Desktop Navigation Links */}
+                    {/* Desktop Navigation Links: ONLY Home & Support */}
                     <nav className="desktop-nav">
                         <ul className="nav-links">
                             <li>
-                                <Link
-                                    href="/"
-                                    className={`nav-link ${pathname === '/' ? 'active' : ''}`}
+                                <a
+                                    href="#home"
+                                    className={`nav-link ${activeView === 'home' ? 'active' : ''}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleNav('home');
+                                    }}
                                 >
                                     Home
-                                </Link>
+                                </a>
                             </li>
                             <li>
-                                <Link
-                                    href="/contact"
-                                    className={`nav-link ${pathname === '/contact' ? 'active' : ''}`}
+                                <a
+                                    href="#contact"
+                                    className={`nav-link ${activeView === 'contact' ? 'active' : ''}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleNav('contact');
+                                    }}
                                 >
                                     Support
-                                </Link>
+                                </a>
                             </li>
                         </ul>
                     </nav>
 
-                    {/* Header Actions */}
+                    {/* Header Actions: ONLY Wishlist & Cart */}
                     <div className="header-actions">
                         <button
                             className="icon-btn"
@@ -140,24 +153,30 @@ export const Header = () => {
 
                     <ul className="mobile-nav-links">
                         <li>
-                            <Link
-                                href="/"
-                                className={`mobile-nav-link ${pathname === '/' ? 'active' : ''}`}
-                                onClick={() => setMobileMenuOpen(false)}
+                            <a
+                                href="#home"
+                                className={`mobile-nav-link ${activeView === 'home' ? 'active' : ''}`}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleNav('home');
+                                }}
                             >
                                 <span>Home</span>
                                 <ArrowRight size={16} opacity={0.6} />
-                            </Link>
+                            </a>
                         </li>
                         <li>
-                            <Link
-                                href="/contact"
-                                className={`mobile-nav-link ${pathname === '/contact' ? 'active' : ''}`}
-                                onClick={() => setMobileMenuOpen(false)}
+                            <a
+                                href="#contact"
+                                className={`mobile-nav-link ${activeView === 'contact' ? 'active' : ''}`}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleNav('contact');
+                                }}
                             >
                                 <span>Support</span>
                                 <ArrowRight size={16} opacity={0.6} />
-                            </Link>
+                            </a>
                         </li>
                     </ul>
                 </div>

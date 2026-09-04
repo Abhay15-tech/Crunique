@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '../context/AppContext';
 import { CRUNIQUE_PRODUCTS } from '../data/products';
-import { Sparkles, ArrowRight, Volume2, VolumeX, ShieldCheck, Heart, Leaf } from 'lucide-react';
+import { Sparkles, ShieldCheck, Heart, Leaf } from 'lucide-react';
 
 export const HeroStory = () => {
-    const { navigateTo, soundEnabled, setSoundEnabled, playCrunchSound, addToCart } = useApp();
+    const { playCrunchSound, addToCart } = useApp();
     const [selectedFruitIndex, setSelectedFruitIndex] = useState(0);
     const [storyStep, setStoryStep] = useState(0);
 
