@@ -50,9 +50,11 @@ export const HeroStory = () => {
 
                 <div className="hero-grid">
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="hero-text-content"
+                        style={{ minWidth: 0, width: '100%', maxWidth: '100%' }}
                     >
                         <h1 className="heading-display" style={{ marginBottom: '1.2rem' }}>
                             Pure Real Fruit. <br />
@@ -64,12 +66,12 @@ export const HeroStory = () => {
                             Made with 100% natural fruit, zero oil, zero added sugar, and endless love.
                         </p>
 
-                        <div style={{ marginBottom: '2.5rem', background: 'rgba(255,255,255,0.03)', padding: '1.2rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.08)' }}>
+                        <div className="hero-story-journey-box" style={{ marginBottom: '2rem', background: 'rgba(255,255,255,0.03)', padding: '1.2rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.08)', width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}>
                             <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold-accent)', marginBottom: '0.75rem', fontWeight: 600 }}>
                                 Story Journey: {STORY_STAGES[storyStep].label} ({storyStep + 1}/5)
                             </div>
                             
-                            <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.8rem' }}>
+                            <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.8rem', width: '100%' }}>
                                 {STORY_STAGES.map((stage, idx) => (
                                     <button
                                         key={stage.label}
@@ -88,19 +90,19 @@ export const HeroStory = () => {
                                 ))}
                             </div>
 
-                            <div style={{ fontSize: '0.95rem', color: 'var(--cream-silk)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <div style={{ fontSize: '0.95rem', color: 'var(--cream-silk)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
                                 <span style={{ color: 'var(--gold-bright)' }}>✦</span> {STORY_STAGES[storyStep].text}
                             </div>
                         </div>
 
-                        <div style={{ display: 'flex', gap: '1.5rem', marginTop: '1.5rem', flexWrap: 'wrap', opacity: 0.85, fontSize: '0.85rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <div className="hero-badges-row">
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap' }}>
                                 <Leaf size={16} color="var(--primary-green)" /> 100% Real Fruit
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap' }}>
                                 <ShieldCheck size={16} color="var(--gold-accent)" /> Zero Added Sugar
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap' }}>
                                 <Heart size={16} color="var(--apple-red)" /> Family Crafted
                             </div>
                         </div>

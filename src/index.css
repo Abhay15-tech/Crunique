@@ -73,6 +73,9 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     background-color: var(--bg-deep);
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
 }
 
 body {
@@ -84,8 +87,23 @@ body {
         radial-gradient(ellipse at 80% 90%, rgba(10, 28, 21, 0.9) 0%, transparent 70%);
     line-height: 1.6;
     overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
+}
+
+.app-root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+}
+
+main, section, header, footer {
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
 }
 
 /* Custom Scrollbar */
@@ -111,12 +129,12 @@ body {
 
 .heading-display {
     font-family: var(--font-serif);
-    font-size: clamp(1.85rem, 6vw, 4.8rem);
+    font-size: clamp(1.65rem, 5.5vw, 4.5rem);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.12;
     letter-spacing: -0.02em;
     color: var(--cream-silk);
-    word-break: normal;
+    word-break: break-word;
     overflow-wrap: break-word;
 }
 
@@ -397,15 +415,44 @@ body {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 3rem;
     align-items: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.hero-grid > * {
+    min-width: 0;
+    max-width: 100%;
 }
 
 @media (max-width: 992px) {
     .hero-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         text-align: center;
+        gap: 2rem;
+    }
+}
+
+.hero-badges-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    opacity: 0.85;
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 992px) {
+    .hero-badges-row {
+        justify-content: center;
+        gap: 0.6rem 0.9rem;
+        font-size: 0.78rem;
     }
 }
 
@@ -432,8 +479,10 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
+    min-width: 0;
 }
 
 .hero-product-card {
@@ -450,6 +499,7 @@ body {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(16px);
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .hero-fruit-pills {
@@ -458,9 +508,10 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-top: 1.6rem;
+    margin-top: 1.4rem;
     width: 100%;
-    max-width: 520px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .hero-fruit-pill-btn {
@@ -492,19 +543,25 @@ body {
 
 @media (max-width: 768px) {
     .hero-product-card {
-        height: 310px;
-        max-width: 320px;
+        height: 300px;
+        max-width: min(320px, calc(100vw - 2.5rem));
     }
     .hero-fruit-pills {
         flex-wrap: nowrap;
         overflow-x: auto;
         justify-content: flex-start;
-        padding: 0.4rem 0.2rem;
+        padding: 0.5rem 0.2rem;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        max-width: 100%;
     }
     .hero-fruit-pills::-webkit-scrollbar {
         display: none;
+    }
+    .hero-fruit-pill-btn {
+        flex-shrink: 0;
+        font-size: 0.8rem;
+        padding: 0.45rem 0.85rem;
     }
 }
 
