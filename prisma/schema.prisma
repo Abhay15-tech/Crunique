@@ -189,18 +189,31 @@ model WishlistItem {
 
 model Order {
   id                String      @id @default(cuid())
-  userId            String
   orderNumber       String      @unique
-  totalAmount       Float
+  orderAccessToken  String      @unique
+  razorpayOrderId   String?     @unique
+  razorpayPaymentId String?     @unique
+  customerName      String
+  email             String
+  phone             String
+  shippingAddress   Json
+  itemsSnapshot     Json
+  subtotalPaise     Int
+  shippingFeePaise  Int
+  discountPaise     Int
+  totalAmountPaise  Int
+  currency          String      @default("INR")
+  paymentStatus     String      @default("PENDING") // PENDING, PAID, FAILED, REFUNDED
   status            OrderStatus @default(PENDING)
-  shippingAddressId String
+  userId            String?
+  shippingAddressId String?
   createdAt         DateTime    @default(now())
   updatedAt         DateTime    @updatedAt
 
-  user            User        @relation(fields: [userId], references: [id])
-  shippingAddress Address     @relation(fields: [shippingAddressId], references: [id])
-  items           OrderItem[]
-  payment         Payment?
+  user              User?       @relation(fields: [userId], references: [id])
+  addressRel        Address?    @relation(fields: [shippingAddressId], references: [id])
+  items             OrderItem[]
+  payment           Payment?
 
   @@map("orders")
 }
@@ -224,8 +237,8 @@ model Payment {
   id                 String   @id @default(cuid())
   orderId            String   @unique
   paymentId          String   @unique // Razorpay Payment ID
-  amount             Float
-  status             String
+  amountPaise        Int
+  status             String   // PENDING, PAID, FAILED, REFUNDED
   method             String   @default("RAZORPAY")
   transactionDetails Json?
   createdAt          DateTime @default(now())
@@ -233,6 +246,14 @@ model Payment {
   order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   @@map("payments")
+}
+
+model ProcessedWebhookEvent {
+  id          String   @id // Razorpay event id (e.g. event_xxxxx)
+  eventType   String
+  processedAt DateTime @default(now())
+
+  @@map("processed_webhook_events")
 }
 
 model Review {

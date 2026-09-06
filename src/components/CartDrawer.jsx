@@ -34,20 +34,10 @@ export const CartDrawer = () => {
     };
 
     const handleCheckout = () => {
-        setCheckoutCompleted(true);
-        try {
-            confetti({
-                particleCount: 120,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        } catch (e) {}
-        showToast("Order placed successfully! Welcome to the CRUNIQUE Family. 📦✨");
-        setTimeout(() => {
-            clearCart();
-            setCheckoutCompleted(false);
-            setIsCartOpen(false);
-        }, 4000);
+        setIsCartOpen(false);
+        if (typeof window !== 'undefined') {
+            window.location.href = '/checkout';
+        }
     };
 
     return (
