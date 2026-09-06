@@ -287,19 +287,6 @@ export const COMBO_PACK_COLLECTIONS = [
         badge: "Luxury Gifting",
         accentColor: "#D4AF37",
         image: "/assets/images/guava_chips.png"
-    },
-    {
-        id: "travel-snack-pack",
-        name: "✈️ TRAVEL SNACK PACK",
-        tagline: "Compact On-The-Go Energy",
-        description: "Compact trial-sized pouch collection designed for flight carry-ons, office desks, and outdoor road trips.",
-        price: 11.99,
-        originalPrice: 14.50,
-        targetAudience: "Travelers, working professionals, students",
-        includedFruits: ["5x 25g Mini Trial Pouches"],
-        badge: "On-The-Go",
-        accentColor: "#F9A825",
-        image: "/assets/images/pineapple_chips.png"
     }
 ];
 
