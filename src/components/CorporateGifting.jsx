@@ -7,7 +7,6 @@ import { Gift, Award, Send, Check } from 'lucide-react';
 
 export const CorporateGifting = () => {
     const { showToast } = useApp();
-    const [ribbonColor, setRibbonColor] = useState('gold');
     const [submitted, setSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -60,19 +59,6 @@ export const CorporateGifting = () => {
                             position: 'relative',
                             overflow: 'hidden'
                         }}>
-                            <div style={{
-                                position: 'absolute',
-                                top: '0',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                width: '40px',
-                                height: '100%',
-                                background: ribbonColor === 'gold' ? 'linear-gradient(180deg, #F5C542 0%, #D4AF37 100%)' :
-                                           ribbonColor === 'emerald' ? 'linear-gradient(180deg, #3FA34D 0%, #0F281E 100%)' :
-                                           'linear-gradient(180deg, #D62828 0%, #801018 100%)',
-                                boxShadow: '0 0 15px rgba(0,0,0,0.5)',
-                                opacity: 0.85
-                            }} />
 
                             <img
                                 src="/assets/images/apple_chips.png"
@@ -87,49 +73,7 @@ export const CorporateGifting = () => {
                                 Includes All 5 Signature Real Fruit Crisps + Personalized Card
                             </p>
 
-                            <div style={{ marginTop: '1.8rem', position: 'relative', zIndex: 2 }}>
-                                <div style={{ fontSize: '0.8rem', color: 'var(--cream-muted)', marginBottom: '0.6rem' }}>
-                                    Select Satin Ribbon Accent:
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'center', gap: '0.8rem' }}>
-                                    <button
-                                        onClick={() => setRibbonColor('gold')}
-                                        style={{
-                                            width: '28px',
-                                            height: '28px',
-                                            borderRadius: '50%',
-                                            background: '#D4AF37',
-                                            border: ribbonColor === 'gold' ? '2px solid #FFF' : 'none',
-                                            cursor: 'pointer'
-                                        }}
-                                        title="Gold Ribbon"
-                                    />
-                                    <button
-                                        onClick={() => setRibbonColor('emerald')}
-                                        style={{
-                                            width: '28px',
-                                            height: '28px',
-                                            borderRadius: '50%',
-                                            background: '#3FA34D',
-                                            border: ribbonColor === 'emerald' ? '2px solid #FFF' : 'none',
-                                            cursor: 'pointer'
-                                        }}
-                                        title="Emerald Ribbon"
-                                    />
-                                    <button
-                                        onClick={() => setRibbonColor('red')}
-                                        style={{
-                                            width: '28px',
-                                            height: '28px',
-                                            borderRadius: '50%',
-                                            background: '#D62828',
-                                            border: ribbonColor === 'red' ? '2px solid #FFF' : 'none',
-                                            cursor: 'pointer'
-                                        }}
-                                        title="Crimson Ribbon"
-                                    />
-                                </div>
-                            </div>
+
                         </div>
                     </div>
 
